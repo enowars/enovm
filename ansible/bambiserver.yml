@@ -1,0 +1,10 @@
+---
+  - hosts: gameserver
+    become: yes
+    become_method: sudo
+
+    roles:
+      - bambi-openvpn-server
+      - bambi-gamebot-bridge
+      - enoengine
+      - enoelk

@@ -1,0 +1,11 @@
+---
+  - hosts: vulnbox*
+    become: yes
+    become_method: sudo
+    vars_files:
+      - config_bambi.yml
+
+    roles:
+      - docker
+      - bambi-openvpn-client
+      - bambi-wireguard-server
