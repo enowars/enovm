@@ -1,12 +1,12 @@
-status /etc/openvpn/server/openvpn-status-gw{{ id }}.log
-log /etc/openvpn/server/openvpn-gw{{ id }}.log
+status /etc/openvpn/client/openvpn-status-gw{{ id }}.log
+log /etc/openvpn/client/openvpn-gw{{ id }}.log
 verb 3
 
 mode p2p
 dev game
 dev-type tun
 proto tcp-client
-remote  192.168.121.61 {{30000 + id}}
+remote {{ gameserver_address }} {{30000 + id}}
 keepalive 10 30
 nobind
 verb 3

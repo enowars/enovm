@@ -13,6 +13,6 @@ do
     vpnport=$(( 30000 + $i ))
     echo "Exposing wireguard port of vulnbox$i on $port"
     iptables -A PREROUTING -t nat -p udp --dport $port -j DNAT --to-destination $vulnbox:1194
-    echo "Exposing openvpn server for vulnbox$i on $port"
+    echo "Exposing openvpn server for vulnbox$i on $vpnport"
     iptables -A PREROUTING -t nat -p tcp --dport $vpnport -j DNAT --to-destination $gameserver:$vpnport
 done
