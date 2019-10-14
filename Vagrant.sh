@@ -1,10 +1,10 @@
 #!/bin/bash
 
 gameserver="$(virsh domifaddr enovm_gameserver | grep -Eo '([0-9]{1,3}[\.]){3}[0-9]{1,3}')"
-
 echo "Found gameserver at $gameserver"
 
 iptables -I POSTROUTING -t nat -j MASQUERADE
+iptables -I FORWARD -i enp10s0 -j ACCEPT
 
 for i in {1..2}
 do
