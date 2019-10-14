@@ -16,3 +16,5 @@ do
     echo "Exposing openvpn server for vulnbox$i on $vpnport"
     iptables -A PREROUTING -t nat -p tcp --dport $vpnport -j DNAT --to-destination $gameserver:$vpnport
 done
+
+conntrack --flush
