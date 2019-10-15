@@ -9,3 +9,4 @@
       - docker
       - bambi-openvpn-client
       - bambi-wireguard-server
+      - bambi-services-vuln
