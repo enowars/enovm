@@ -1,0 +1,5 @@
+---
+  - name: Clone EnoScoreboard
+    git:
+      repo: "https://github.com/enowars/EnoScoreboard.git"
+      dest: /services/EnoScoreboard

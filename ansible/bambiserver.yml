@@ -6,5 +6,7 @@
     roles:
       - bambi-openvpn-server
       - bambi-gamebot-bridge
+      - bambi-checkers
       - enoengine
       - enoelk
+      - enoscoreboard
