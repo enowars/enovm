@@ -4,15 +4,14 @@
       name: dc@{{ item.key }}
       state: stopped
       enabled: no
-    with_dict:
-      - "{{ vulnerable_services }}"
+    with_dict: "{{ vulnerable_services }}"
 
   - name: Clone dockered services
     git:
       repo: "{{ item.value }}"
       dest: /services/{{ item.key }}
-    with_dict:
-      - "{{ vulnerable_services }}"
+      accept_hostkey: yes
+    with_dict: "{{ vulnerable_services }}"
 
   - name: Enable and start services
     service:
