@@ -19,5 +19,4 @@
       name: dc@{{ item.key }}
       state: restarted
       enabled: yes
-    with_dict:
-      - "{{ vulnerable_services }}"
+    with_dict: "{{ vulnerable_services }}"
