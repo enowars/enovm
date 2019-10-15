@@ -25,7 +25,7 @@
   - name: Copy services to vulnbox
     synchronize:
       src: ./services/{{ inventory_hostname }}/dockered_vulnerable_services/{{ item.key }}/service/
-      dest: /opt/dockerfiles/{{ item.key }}
+      dest: /services/{{ item.key }}
     with_dict: "{{ vulnerable_services }}"
 
   - name: Enable and start services
