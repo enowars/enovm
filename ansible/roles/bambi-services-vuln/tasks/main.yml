@@ -9,7 +9,7 @@
 
   - name: Clone dockered services
     git:
-      repo: "https://github.com/enowars/service-{{ item.key }}.git"
+      repo: "{{ item.value }}"
       dest: /services/{{ item.key }}
         with_dict:
       - "{{ vulnerable_services }}"
