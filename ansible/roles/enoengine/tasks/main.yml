@@ -1,5 +1,5 @@
 ---
-  - name: Clone dockered services locally
+  - name: Clone EnoEngine
     git:
       repo: "https://github.com/enowars/EnoEngine.git"
       dest: /services/EnoEngine

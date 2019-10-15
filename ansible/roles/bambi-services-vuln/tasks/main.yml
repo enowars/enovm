@@ -11,7 +11,7 @@
     git:
       repo: "{{ item.value }}"
       dest: /services/{{ item.key }}
-        with_dict:
+    with_dict:
       - "{{ vulnerable_services }}"
 
   - name: Enable and start services
