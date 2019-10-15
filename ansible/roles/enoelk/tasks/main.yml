@@ -1,0 +1,5 @@
+---
+  - name: Clone EnoELK
+    git:
+      repo: "https://github.com/enowars/EnoELK.git"
+      dest: /services/EnoELK
