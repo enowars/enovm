@@ -9,6 +9,7 @@
       - bambi-openvpn-server
       - bambi-gamebot-bridge
       - bambi-checkers
+      - bambi-filebeat
       - enoengine
       - enoelk
       - enoscoreboard
