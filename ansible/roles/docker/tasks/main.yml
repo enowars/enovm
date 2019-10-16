@@ -64,6 +64,11 @@
       dest: /etc/systemd/system/dc@.service
     changed_when: false
 
+  - name: Create /services
+    file:
+      path: /services
+      state: directory
+
   - name: Reload system daemon
     systemd:
       name: "docker" # ansible <2.4 always requires 'name'
