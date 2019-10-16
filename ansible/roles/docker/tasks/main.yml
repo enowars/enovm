@@ -19,11 +19,6 @@
       name: ["apt-transport-https", "ca-certificates", "gnupg2", "software-properties-common"]
       state: present
 
-  - name: Copy daemon.json
-    copy:
-      src: daemon.json
-      dest: /etc/docker/daemon.json
-
   - name: Copy over the docker gpg key
     copy:
       src: docker.gpg
@@ -68,6 +63,17 @@
     file:
       path: /services
       state: directory
+
+  - name: Copy daemon.json
+    copy:
+      src: daemon.json
+      dest: /etc/docker/daemon.json
+
+- name: Restart docker
+    service:
+      name: docker
+      state: restarted
+      enabled: yes
 
   - name: Reload system daemon
     systemd:
