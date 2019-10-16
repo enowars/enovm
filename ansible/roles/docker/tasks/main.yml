@@ -69,7 +69,7 @@
       src: daemon.json
       dest: /etc/docker/daemon.json
 
-- name: Restart docker
+  - name: Restart docker
     service:
       name: docker
       state: restarted
