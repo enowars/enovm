@@ -5,8 +5,8 @@ echo "Found gameserver at $gameserver"
 
 iptables -I POSTROUTING -t nat -j MASQUERADE
 iptables -I FORWARD -i enp10s0 -j ACCEPT                                                        # Allow forwarding from enp10s0
-iptables -A PREROUTING -t nat -p tcp --dport 80 -j DNAT --to-destination $gameserver:80         # Map port 80 to gameserver:80
-iptables -A PREROUTING -t nat -p tcp --dport 65000 -j DNAT --to-destination $gameserver:22      # Map port 65000 to gameserver:80
+iptables -A PREROUTING -i enp10s0 -t nat -p tcp --dport 80 -j DNAT --to-destination $gameserver:80         # Map port 80 to gameserver:80
+iptables -A PREROUTING -i enp10s0 -t nat -p tcp --dport 65000 -j DNAT --to-destination $gameserver:22      # Map port 65000 to gameserver:80
 
 for i in {1..2}
 do
