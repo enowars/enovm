@@ -10,3 +10,4 @@
       - bambi-openvpn-client
       - bambi-wireguard-server
       - bambi-services-vuln
+      - bambi-ssh-keys
