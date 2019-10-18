@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "gameserver" do |gameserver|
         gameserver.vm.hostname = "gameserver"
         gameserver.vm.provider "libvirt" do |v|
-            v.memory = 4096
+            v.memory = 8192
             v.cpus = 4
         end
         gameserver.vm.provision :ansible do |ansible|
