@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
     local_min_team_id = 3
     local_max_team_id = 10
     teamids = (1..max_team_id)
-    local_team_ids = (local_min_teamid..local_max_team_id)
+    local_team_ids = (local_min_team_id..local_max_team_id)
 
     # Ansible Variables
     host_vars = {
