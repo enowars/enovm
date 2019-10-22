@@ -5,9 +5,11 @@ Vagrant.configure("2") do |config|
     config.vm.box = "debian/buster64"
     config.vm.boot_timeout = 600
     config.vm.box_check_update = false
-    min_teamid = 1
-    max_teamid = 2
-    teamids = (min_teamid..max_teamid)
+    max_team_id = 20
+    local_min_team_id = 3
+    local_max_team_id = 10
+    teamids = (1..max_team_id)
+    local_team_ids = (local_min_teamid..local_max_team_id)
 
     # Ansible Variables
     host_vars = {
@@ -15,8 +17,8 @@ Vagrant.configure("2") do |config|
     }
     extra_vars = {
         "teams" => {
-            "min" => min_teamid,
-            "max" => max_teamid,
+            "min" => 1,
+            "max" => max_team_id,
             "range" => teamids.to_a,
         }
     }
@@ -27,24 +29,26 @@ Vagrant.configure("2") do |config|
     end
 
     # Gameserver
-    config.vm.define "gameserver" do |gameserver|
-        gameserver.vm.hostname = "gameserver"
-        gameserver.vm.provider "libvirt" do |v|
-            v.memory = 8192
-            v.cpus = 4
-        end
-        gameserver.vm.provision :ansible do |ansible|
-            # Disable default limit to connect to all the machines
-            ansible.limit = "all"
-            ansible.host_vars = host_vars
-            ansible.extra_vars = extra_vars
-            ansible.playbook = "ansible/bambiserver.yml"
-            #ansible.ask_vault_pass = true
+    if local_min_team_id == 1
+        config.vm.define "gameserver" do |gameserver|
+            gameserver.vm.hostname = "gameserver"
+            gameserver.vm.provider "libvirt" do |v|
+                v.memory = 8192
+                v.cpus = 4
+            end
+            gameserver.vm.provision :ansible do |ansible|
+                # Disable default limit to connect to all the machines
+                ansible.limit = "all"
+                ansible.host_vars = host_vars
+                ansible.extra_vars = extra_vars
+                ansible.playbook = "ansible/bambiserver.yml"
+                #ansible.ask_vault_pass = true
+            end
         end
     end
 
     # Vulnboxes
-    teamids.each do |i|
+    local_team_ids.each do |i|
         config.vm.define "vulnbox#{i}" do |node|
             node.vm.hostname = "vulnbox#{i}"
             node.vm.provider "libvirt" do |v|
@@ -52,7 +56,7 @@ Vagrant.configure("2") do |config|
                 v.cpus = 2
                 v.management_network_mode = "open"
             end
-            if i == max_teamid
+            if i == local_max_team_id
                 node.vm.provision :ansible do |ansible|
                     # Disable default limit to connect to all the machines
                     ansible.limit = "all"
