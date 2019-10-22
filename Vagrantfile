@@ -6,8 +6,8 @@ Vagrant.configure("2") do |config|
     config.vm.boot_timeout = 600
     config.vm.box_check_update = false
     max_team_id = 20
-    local_min_team_id = 3
-    local_max_team_id = 10
+    local_min_team_id = 1
+    local_max_team_id = 2
     teamids = (1..max_team_id)
     local_team_ids = (local_min_team_id..local_max_team_id)
 
@@ -32,6 +32,7 @@ Vagrant.configure("2") do |config|
     if local_min_team_id == 1
         config.vm.define "gameserver" do |gameserver|
             gameserver.vm.hostname = "gameserver"
+            gameserver.vm.synced_folder './', '/vagrant', disabled: true
             gameserver.vm.provider "libvirt" do |v|
                 v.memory = 8192
                 v.cpus = 4
@@ -51,6 +52,7 @@ Vagrant.configure("2") do |config|
     local_team_ids.each do |i|
         config.vm.define "vulnbox#{i}" do |node|
             node.vm.hostname = "vulnbox#{i}"
+            node.vm.synced_folder './', '/vagrant', disabled: true
             node.vm.provider "libvirt" do |v|
                 v.memory = 4096
                 v.cpus = 2
