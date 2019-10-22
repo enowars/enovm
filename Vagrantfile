@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
         config.vm.define "vulnbox#{i}" do |node|
             node.vm.hostname = "vulnbox#{i}"
             node.vm.provider "libvirt" do |v|
-                v.memory = 2048
+                v.memory = 4096
                 v.cpus = 2
                 v.management_network_mode = "open"
             end
