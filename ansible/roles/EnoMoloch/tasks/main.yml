@@ -37,6 +37,12 @@
       state: restarted
       enabled: yes
 
+  - name: Install tcpdump
+      apt: 
+        name: tcpdump
+        state: present 
+        update_cache: yes
+
   - name: Copy over the enodump unit
     copy:
       src: enodump.service
