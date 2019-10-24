@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
             gameserver.vm.hostname = "gameserver"
             gameserver.vm.synced_folder './', '/vagrant', disabled: true
             gameserver.vm.provider "libvirt" do |v|
-                v.memory = 8192
+                v.memory = 6144
                 v.cpus = 4
             end
             gameserver.vm.provision :ansible do |ansible|
