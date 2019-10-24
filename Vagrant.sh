@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-max_team_id= 20
+max_team_id=20
 local_min_team_id=$1
 local_max_team_id=$2
 gameserver="$(virsh domifaddr enovm_gameserver | grep -Eo '([0-9]{1,3}[\.]){3}[0-9]{1,3}')"
@@ -16,7 +16,7 @@ fi
 
 for i in $(seq 1 $max_team_id);
 do
-    if [[ $i -ge $local_min_team_id && $i -le $local_max_team_id]] ; then
+    if [[ ($i -ge $local_min_team_id) && ($i -le $local_max_team_id) ]] ; then
         vulnbox="$(virsh domifaddr enovm_vulnbox$i | grep -Eo '([0-9]{1,3}[\.]){3}[0-9]{1,3}')"
         port=$(( 65000 + $i ))
         vpnport=$(( 30000 + $i ))
