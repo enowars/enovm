@@ -38,10 +38,10 @@
       enabled: yes
 
   - name: Install tcpdump
-      apt: 
-        name: tcpdump
-        state: present 
-        update_cache: yes
+    apt: 
+      name: tcpdump
+      state: present 
+      update_cache: yes
 
   - name: Copy over the enodump unit
     copy:
