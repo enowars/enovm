@@ -31,11 +31,11 @@
       src: ./services/{{ inventory_hostname }}/EnoMoloch/
       dest: /services/EnoMoloch/
 
-  - name: Enable and start EnoMoloch
-    service:
-      name: dc@EnoMoloch
-      state: restarted
-      enabled: yes
+#  - name: Enable and start EnoMoloch
+#    service:
+#      name: dc@EnoMoloch
+#      state: restarted
+#      enabled: yes
 
   - name: Install tcpdump
     apt: 
