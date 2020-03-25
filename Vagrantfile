@@ -6,8 +6,8 @@ Vagrant.configure("2") do |config|
     config.vm.boot_timeout = 600
     config.vm.box_check_update = false
     max_team_id = 20
-    local_min_team_id = 1
-    local_max_team_id = 2
+    local_min_team_id = 3
+    local_max_team_id = 8
     teamids = (1..max_team_id)
     local_team_ids = (local_min_team_id..local_max_team_id)
 
@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
             node.vm.hostname = "vulnbox#{i}"
             node.vm.synced_folder './', '/vagrant', disabled: true
             node.vm.provider "libvirt" do |v|
-                v.memory = 4096
+                v.memory = 6144
                 v.cpus = 2
                 v.management_network_mode = "open"
             end

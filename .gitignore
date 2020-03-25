@@ -3,3 +3,4 @@ output-virtualbox-iso
 ansible/services
 output/
 config*.yml
+.vagrant
