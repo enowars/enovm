@@ -7,3 +7,6 @@ config*.yml
 .terraform
 *.tfstate
 *.backup
+.vagrant
+.retry
+/config

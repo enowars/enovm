@@ -8,3 +8,4 @@
     roles:
       - bambi-filebeat
       - bambi-ssh-keys
+      - wireguard-server

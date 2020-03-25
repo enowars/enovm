@@ -1,0 +1,38 @@
+---
+  - name: Install linux headers
+    apt:
+      name: linux-headers-amd64
+
+  - name: Ensure wg directory exists
+    file:
+      path: /etc/wireguard
+      state: directory
+      mode: "700"
+
+  - name: Add wg repository
+    apt_repository:
+      repo: "deb http://deb.debian.org/debian unstable main"
+      state: present
+
+  - name: Configure wireguard repo (Debian)
+    blockinfile:
+      dest: /etc/apt/preferences.d/limit-unstable
+      create: yes
+      block: |-
+        Package: *
+        Pin: release a=unstable
+        Pin-Priority: 150
+
+  - name: Install wg
+    apt:
+      name: wireguard
+      state: present
+      update_cache: yes
+
+  - name: allow wireguard input traffic
+    iptables:
+      chain: INPUT
+      in_interface: eth0
+      destination_port: "51820"
+      protocol: udp
+      jump: ACCEPT
