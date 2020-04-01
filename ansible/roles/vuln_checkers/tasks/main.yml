@@ -1,4 +1,11 @@
 ---
+  - name: Disable and stop checker services
+    service:
+      name: dc@checker_{{ item.key }}
+      state: stopped
+      enabled: no
+    with_dict: "{{ vulnerable_services }}"
+
   - name: Clean local checker services cache
     become: no
     local_action:

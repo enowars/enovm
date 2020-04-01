@@ -5,6 +5,11 @@
       state: stopped
       enabled: no
 
+  - name: Install docker dependencies
+    apt: 
+      name: ["git"]
+      state: present
+
   - name: Clone EnoEngine
     git:
       repo: "https://github.com/enowars/EnoEngine.git"
@@ -14,3 +19,14 @@
     service:
       name: dc@EnoEngine
       enabled: yes
+
+  - name: allow scoreboard input traffic
+    iptables:
+      chain: INPUT
+      in_interface: eth0
+      destination_port: "80"
+      protocol: tcp
+      jump: ACCEPT
+
+  - name: persist iptables config
+    shell: "iptables-save > /etc/iptables/rules.v4"

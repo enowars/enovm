@@ -7,7 +7,7 @@
 
     roles:
       - docker
-      - bambi-services-vuln
+      - vuln_services
       - bambi-ssh-keys
       - firewall
       - docker-block-external

@@ -8,13 +8,13 @@ provider "hcloud" {
 }
 
 locals {
-    vulnbox_count = 1
-    checker_count = 0
-    engine_count = 0 # must be 0 or 1
+    vulnbox_count = 2
+    checker_count = 1
+    engine_count = 1 # must be 0 or 1
     vulnbox_type = "cx11"
     router_type = "cx11"
     checker_type = "cx11"
-    engine_type = "cx11"
+    engine_type = "cx21"
 
     ovh_dyndns_username = "bambi.ovh-enoblade1"
     ovh_dyndns_password = var.ovh_dyndns_password
@@ -91,7 +91,7 @@ resource "hcloud_server" "vulnbox" {
   ]
 
   provisioner "local-exec" {
-    command = "curl --user \"${local.ovh_dyndns_username}:${var.ovh_dyndns_password}\" \"https://www.ovh.com/nic/update?system=dyndns&hostname=${self.name}.${local.ovh_dyndns_domain}&myip=${self.ipv4_address}\""
+    command = "curl --user \"${local.ovh_dyndns_username}:${var.ovh_dyndns_password}\" \"https://www.ovh.com/nic/update?system=dyndns&hostname=${self.name}.ext.${local.ovh_dyndns_domain}&myip=${self.ipv4_address}\""
   }
 
   connection {

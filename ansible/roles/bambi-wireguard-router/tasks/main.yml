@@ -39,9 +39,28 @@
       out_interface: router
       jump: MASQUERADE
 
+  - name: DNAT the flag submission IP to the engine
+    iptables:
+      tables: nat
+      chain: PREROUTING
+      destination: 10.10.10.10
+      jump: REDIRECT
+      to_destination: 192.168.1.0
+
   - name: allow traffic from the internal network to teams
     iptables:
       chain: FORWARD
       in_interface: ens10
       out_interface: router
       jump: ACCEPT
+
+  - name: allow wireguard input traffic
+    iptables:
+      chain: INPUT
+      in_interface: eth0
+      destination_port: "51820"
+      protocol: udp
+      jump: ACCEPT
+
+  - name: persist iptables config
+    shell: "iptables-save > /etc/iptables/rules.v4"

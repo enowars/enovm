@@ -17,5 +17,5 @@
       - role: journalbeat
         vars:
           elk: 192.168.1.0
-      - bambi-checkers
+      - vuln_checkers
       - docker-block-external
