@@ -1,0 +1,21 @@
+---
+  - hosts: all
+    become: yes
+    become_method: sudo
+    vars_files:
+      - config_bambi.yml
+
+    roles:
+      - bambi-ssh-keys
+      - firewall
+      - role: internal-routes
+        vars:
+          gateway: 192.168.0.1
+      - enoengine
+      - enoelk
+      - enoscoreboard
+      - bambi-filebeat
+      - role: journalbeat
+        vars:
+          elk: 192.168.1.0
+      - docker-block-external

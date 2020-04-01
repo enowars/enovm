@@ -2,7 +2,8 @@
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "../ansible/bambirouter.yml"
+            "playbook_file": "../ansible/bambivulnbox.yml",
+            "host_alias": "packer-vulnbox"
         }
     ],
     "builders": [
@@ -12,9 +13,9 @@
             "location": "fsn1",
             "server_type": "cx11",
             "ssh_username": "root",
-            "snapshot_name": "router-{{timestamp}}",
+            "snapshot_name": "bambivulnbox-{{timestamp}}",
             "snapshot_labels": {
-                "type": "router"
+                "type": "bambivulnbox"
             }
         }
     ]

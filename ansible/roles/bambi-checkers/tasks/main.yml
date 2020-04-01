@@ -25,6 +25,5 @@
   - name: Enable and start checker services
     service:
       name: dc@checker_{{ item.key }}
-      state: restarted
       enabled: yes
     with_dict: "{{ vulnerable_services }}"

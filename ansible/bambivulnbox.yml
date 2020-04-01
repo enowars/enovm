@@ -1,5 +1,5 @@
 ---
-  - hosts: vulnbox*
+  - hosts: all
     become: yes
     become_method: sudo
     vars_files:
@@ -7,8 +7,9 @@
 
     roles:
       - docker
-      - bambi-openvpn-client
-      - bambi-wireguard-server
       - bambi-services-vuln
       - bambi-ssh-keys
+      - firewall
+      - docker-block-external
+      - wireguard
       - EnoMoloch

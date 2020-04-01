@@ -1,0 +1,47 @@
+---
+  - copy:
+      src: "{{ role_path }}/../../../config/wireguard_router/router.conf"
+      dest: /etc/wireguard/router.conf
+
+  - name: start and enable wg-quick@cloud.service
+    service:
+      name: wg-quick@router
+      enabled: yes
+
+  - name: "Enable ipv4 forward"
+    sysctl:
+      name: net.ipv4.ip_forward
+      value: '1'
+      sysctl_set: yes
+
+  - name: allow related/established forward traffic
+    iptables:
+      chain: FORWARD
+      ctstate: [RELATED, ESTABLISHED]
+      jump: ACCEPT
+
+  - name: "Enable ipv4 forward"
+    sysctl:
+      name: net.ipv4.ip_forward
+      value: '1'
+      sysctl_set: yes
+
+  - name: allow related/established forward traffic
+    iptables:
+      chain: FORWARD
+      ctstate: [RELATED, ESTABLISHED]
+      jump: ACCEPT
+
+  - name: masquerade outgoing traffic on the router interface
+    iptables:
+      table: nat
+      chain: POSTROUTING
+      out_interface: router
+      jump: MASQUERADE
+
+  - name: allow traffic from the internal network to teams
+    iptables:
+      chain: FORWARD
+      in_interface: ens10
+      out_interface: router
+      jump: ACCEPT

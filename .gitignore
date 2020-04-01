@@ -10,3 +10,4 @@ config*.yml
 .vagrant
 .retry
 /config
+*.retry

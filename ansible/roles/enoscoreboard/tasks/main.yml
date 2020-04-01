@@ -13,5 +13,4 @@
   - name: Enable and start EnoScoreboard
     service:
       name: dc@EnoScoreboard
-      state: restarted
       enabled: yes

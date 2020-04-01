@@ -1,9 +1,0 @@
----
-  - copy:
-      src: "{{ role_path }}/files/foo.conf"
-      dest: /etc/foo.conf
-
-  - name: start and enable wg-quick@cloud.service
-    service:
-      name: wg-quick@cloud
-      enabled: yes
