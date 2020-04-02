@@ -20,12 +20,12 @@
       name: dc@EnoEngine
       enabled: yes
 
-  - name: allow scoreboard input traffic
+  - name: Allow flag submission traffic
     iptables:
       chain: INPUT
-      in_interface: eth0
-      destination_port: "80"
+      in_interface: ens10
       protocol: tcp
+      destination_port: "1337"
       jump: ACCEPT
 
   - name: persist iptables config
