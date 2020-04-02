@@ -12,3 +12,6 @@
       - bambi-ssh-keys
       - firewall
       - bambi-wireguard-router
+      - role: programs
+        vars:
+          program_list: "tmux"

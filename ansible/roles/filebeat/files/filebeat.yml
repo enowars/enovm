@@ -145,9 +145,9 @@ setup.kibana:
 # Configure what output to use when sending the data collected by the beat.
 
 #-------------------------- Elasticsearch output ------------------------------
-output.elasticsearch:
+#output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["192.168.1.0:9200"]
+  #hosts: ["192.168.1.0:9200"]
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
@@ -155,9 +155,9 @@ output.elasticsearch:
   #password: "changeme"
 
 #----------------------------- Logstash output --------------------------------
-#output.logstash:
+output.logstash:
   # The Logstash hosts
-  #hosts: ["localhost:5044"]
+  hosts: ["192.168.1.0:5045"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications

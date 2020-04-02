@@ -41,10 +41,12 @@
 
   - name: DNAT the flag submission IP to the engine
     iptables:
-      tables: nat
+      table: nat
       chain: PREROUTING
       destination: 10.10.10.10
-      jump: REDIRECT
+      destination_port: 1337
+      protocol: tcp
+      jump: DNAT
       to_destination: 192.168.1.0
 
   - name: allow traffic from the internal network to teams

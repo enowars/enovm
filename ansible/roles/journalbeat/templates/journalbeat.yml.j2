@@ -154,6 +154,10 @@ output.logstash:
 processors:
   - add_host_metadata: ~
   - add_cloud_metadata: ~
+  - drop_event:
+      when:
+        contains:
+          systemd.unit: "dc@checker_"
 
 #================================ Logging =====================================
 

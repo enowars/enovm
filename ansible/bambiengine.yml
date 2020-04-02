@@ -19,3 +19,6 @@
         vars:
           elk: 192.168.1.0
       - docker-block-external
+      - role: programs
+        vars:
+          program_list: "tmux"

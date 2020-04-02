@@ -13,3 +13,6 @@
       - docker-block-external
       - wireguard
       - EnoMoloch
+      - role: programs
+        vars:
+          program_list: "tmux"
