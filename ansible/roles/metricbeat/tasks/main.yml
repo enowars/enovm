@@ -16,14 +16,10 @@
   become: yes
   when: metricbeat_check_deb.rc == 1
 
-- name: Sync Metricbeat config
-  copy:
-    src: metricbeat.yml
+- name: Copy Metricbeat config
+  template:
+    src: metricbeat.yml.j2
     dest: /etc/metricbeat/metricbeat.yml
-    # XXX: Documentation suggests that "no" might not be the value we are
-    # looking for:
-    # https://docs.ansible.com/ansible/latest/modules/copy_module.html
-    # owner: no
 
 - name: Enable and start Metricbeat
   service:

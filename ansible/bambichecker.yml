@@ -11,10 +11,13 @@
       - role: internal-routes
         vars:
           gateway: 192.168.0.1
-      - role: bambi-filebeat
+      - role: filebeat
         vars:
           elk: 192.168.1.0
       - role: journalbeat
+        vars:
+          elk: 192.168.1.0
+      - role: metricbeat
         vars:
           elk: 192.168.1.0
       - vuln_checkers
