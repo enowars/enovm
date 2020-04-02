@@ -16,3 +16,4 @@
       - role: programs
         vars:
           program_list: "tmux"
+      - bambi-openvpn-team-server
