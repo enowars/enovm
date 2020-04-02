@@ -53,3 +53,14 @@
     service:
       name: dc@EnoMoloch
       enabled: yes
+
+  - name: "Block access to moloch from game interface"
+    iptables:
+      chain: DOCKER-USER
+      in_interface: game
+      protocol: tcp
+      destination_port: "8005"
+      jump: DROP
+
+  - name: persist iptables config
+    shell: "iptables-save > /etc/iptables/rules.v4"

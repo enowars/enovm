@@ -13,5 +13,11 @@
       in_interface: eth0
       jump: DROP
 
+  - name: "Delete RETURN rule in DOCKER-USER"
+    iptables:
+      chain: DOCKER-USER
+      jump: RETURN
+      state: absent
+
   - name: persist iptables config
     shell: "iptables-save > /etc/iptables/rules.v4"

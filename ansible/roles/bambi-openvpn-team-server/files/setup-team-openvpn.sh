@@ -72,6 +72,8 @@ auth SHA256
 keepalive 10 120
 comp-lzo
 verb 3
+pull
+
 <ca>
 $(cat /etc/openvpn/server/ca.crt)
 </ca>
@@ -85,3 +87,6 @@ $(cat /tmp/openvpn-ca/pki/issued/client.crt)
 $(cat /tmp/openvpn-ca/pki/private/client.key)
 </key>
 EOF
+
+/usr/bin/systemctl enable openvpn-server@team
+/usr/bin/systemctl start openvpn-server@team
