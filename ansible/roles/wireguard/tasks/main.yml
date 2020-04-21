@@ -17,23 +17,15 @@
 
   - name: Add wg repository
     apt_repository:
-      repo: "deb http://deb.debian.org/debian unstable main"
+      repo: "deb http://deb.debian.org/debian buster-backports main"
       state: present
-
-  - name: Configure wireguard repo (Debian)
-    blockinfile:
-      dest: /etc/apt/preferences.d/limit-unstable
-      create: yes
-      block: |-
-        Package: *
-        Pin: release a=unstable
-        Pin-Priority: 150
 
   - name: Install wg
     apt:
       name: wireguard
       state: present
       update_cache: yes
+      default_release: buster-backports
 
   - name: allow wireguard input traffic
     iptables:

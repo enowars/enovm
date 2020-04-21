@@ -11,10 +11,10 @@ locals {
     vulnbox_count = 2
     checker_count = 1
     engine_count = 1 # must be 0 or 1
-    vulnbox_type = "cx21"
-    router_type = "cx11"
-    checker_type = "cx11"
-    engine_type = "cx21"
+    vulnbox_type = "cpx21"
+    router_type = "cpx11"
+    checker_type = "cpx11"
+    engine_type = "cpx31"
 
     ovh_dyndns_username = "bambi.ovh-enoblade1"
     ovh_dyndns_password = var.ovh_dyndns_password
