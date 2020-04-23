@@ -6,6 +6,7 @@
       - config_bambi.yml
 
     roles:
+      - hetzner-base
       - bambi-ssh-keys
       - firewall
       - role: internal-routes
